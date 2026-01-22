@@ -731,7 +731,8 @@ svg {
   background-size: cover;
   content: "";
   inset: 0;
-  opacity: 0.25;
+  filter: brightness(1.2) saturate(1.05);
+  opacity: 0.55;
   position: absolute;
 }
 
@@ -846,6 +847,14 @@ svg {
   background: linear-gradient(150deg, rgba(11, 14, 18, 0.2), rgba(11, 14, 18, 0.05)), var(--media-image);
   background-position: center;
   background-size: cover;
+}
+
+.about-services .service-card:nth-of-type(1) .service-media--photo {
+  background-position: center 60%;
+}
+
+.about-services .service-card:nth-of-type(2) .service-media--photo {
+  background-position: center 60%;
 }
 
 .service-content {
@@ -2324,6 +2333,10 @@ button.button {
     display: block;
   }
 
+  #hero-title {
+    margin-top: 175px;
+  }
+
   .secondary-toggle {
     display: none;
   }
@@ -2412,7 +2425,7 @@ button.button {
 @media (max-width: 600px) {
   .hero {
     align-items: center;
-    padding-top: 150px;
+    padding-top: 100px;
   }
 
   .hero h1 {
