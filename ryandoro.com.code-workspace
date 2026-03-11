@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../html_and_css_project"
+		},
+		{
+			"path": "../project"
+		},
+		{
+			"path": "../Portfolio"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ryandoro.com"
+	}
+}

@@ -15,45 +15,9 @@
 
   <div class="site">
     <aside class="sidebar">
-      <header class="site-header" role="banner">
-        <a class="brand" href="../index.html" aria-label="Ryan Doro home">
-          <img class="brand-badge" src="../images/cropped-RD-WHITE-GEMINI-logo.png" alt="Ryan Doro logo">
-          <span class="brand-name">RYAN DORO</span>
-        </a>
-        <button class="secondary-toggle" aria-expanded="false" aria-controls="secondary">Menu</button>
-      </header>
+      <header class="site-header" role="banner" data-shared-header="true" data-root-prefix="../"></header>
 
-      <div id="secondary" class="secondary">
-        <nav class="main-navigation" aria-label="Primary">
-          <ul class="nav-menu">
-            <li class="menu-item menu-item-has-children">
-              <a href="../index.html">MISSION</a>
-              <ul class="sub-menu">
-                <li class="menu-item"><a href="../about.html">ABOUT RYAN DORO</a></li>
-              </ul>
-            </li>
-            <li class="menu-item"><a href="../approach.html">DISCOVER RYAN'S APPROACH</a></li>
-            <li class="menu-item menu-item-has-children">
-              <a href="../training.html">PERSONAL TRAINING</a>
-              <ul class="sub-menu">
-                <li class="menu-item"><a href="https://fitbaseai.com/" target="_blank" rel="noreferrer noopener">FITBASEAI</a></li>
-                <li class="menu-item"><a href="../custom-programs.html">CUSTOM PROGRAMS</a></li>
-                <li class="menu-item"><a href="../testimonials.html">TESTIMONIALS</a></li>
-              </ul>
-            </li>
-            <li class="menu-item"><a href="../blog.html">BLOG</a></li>
-          </ul>
-        </nav>
-
-        <nav class="social-navigation" aria-label="Social">
-          <ul class="menu">
-            <li class="menu-item"><a href="https://twitter.com/ImRyanDoro" target="_blank" rel="noreferrer noopener">Twitter</a></li>
-            <li class="menu-item"><a href="https://www.facebook.com/ryan.doro" target="_blank" rel="noreferrer noopener">Facebook</a></li>
-            <li class="menu-item"><a href="https://www.instagram.com/imryandoro/" target="_blank" rel="noreferrer noopener">Instagram</a></li>
-            <li class="menu-item"><a href="https://www.linkedin.com/in/ryandorokinesiology/" target="_blank" rel="noreferrer noopener">LinkedIn</a></li>
-          </ul>
-        </nav>
-      </div>
+      <div id="secondary" class="secondary" data-shared-nav="true" data-root-prefix="../"></div>
     </aside>
 
     <div id="content" class="site-content">
@@ -105,36 +69,9 @@
         </article>
       </main>
 
-      <footer class="site-footer" role="contentinfo">
-        <p>&copy; <span class="js-year">2025</span> Ryan Doro. All Rights Reserved.</p>
-        <a class="footer-brand" href="../index.html" aria-label="Ryan Doro home">
-          <img class="brand-badge" src="../images/cropped-RD-WHITE-GEMINI-logo.png" alt="Ryan Doro logo">
-          <span class="brand-name">RYAN DORO</span>
-        </a>
-      </footer>
+      <footer class="site-footer" role="contentinfo" data-shared-footer="true" data-root-prefix="../"></footer>
     </div>
   </div>
-
-  <script>
-    const toggle = document.querySelector('.secondary-toggle');
-    const secondary = document.getElementById('secondary');
-
-    if (toggle && secondary) {
-      toggle.addEventListener('click', () => {
-        const isOpen = secondary.classList.toggle('toggled-on');
-        toggle.setAttribute('aria-expanded', String(isOpen));
-      });
-    }
-  </script>
-
-  <script>
-    const yearTargets = document.querySelectorAll('.js-year');
-    if (yearTargets.length) {
-      const currentYear = new Date().getFullYear();
-      yearTargets.forEach((node) => {
-        node.textContent = currentYear;
-      });
-    }
-  </script>
+  <script src="../shared-layout.js"></script>
 </body>
 </html>

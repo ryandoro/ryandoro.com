@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Engineering Portfolio | Ryan Doro</title>
+  <meta name="description" content="Software engineering portfolio projects by Ryan Doro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <div class="site">
+    <aside class="sidebar">
+      <header class="site-header" role="banner" data-shared-header="true" data-root-prefix=""></header>
+
+      <div id="secondary" class="secondary" data-shared-nav="true" data-root-prefix=""></div>
+    </aside>
+
+    <div id="content" class="site-content">
+      <main class="site-main">
+        <section class="portfolio-hero" style="--hero-image: url('images/personal-portrait-index.jpg');">
+          <div class="portfolio-hero__content">
+            <div class="portfolio-hero__intro">
+              <p class="hero-kicker reveal">Ryan Doro</p>
+              <h1 class="reveal reveal-delay-1">Full-Stack Software Engineer</h1>
+              <p class="portfolio-hero__lead reveal reveal-delay-2">
+                I build user-focused web products that are intuitive and efficient, with reliable systems and a smooth experience that feels natural.
+              </p>
+              <div class="portfolio-hero__actions reveal reveal-delay-3">
+                <a class="button button--accent" href="#selected-work">View Projects</a>
+                <a class="button button--outline" href="https://github.com/ryandoro" target="_blank" rel="noreferrer noopener">GitHub</a>
+                <a class="button button--outline" href="https://www.linkedin.com/in/ryandoroprogramming/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+              </div>
+            </div>
+            <div class="portfolio-hero__portrait reveal reveal-delay-2" aria-hidden="true"></div>
+            <div class="portfolio-hero__proof">
+              <article class="portfolio-hero__proof-item">
+                <span class="portfolio-hero__proof-label">Open To</span>
+                <p class="portfolio-hero__proof-value">Full-stack, frontend, and backend software engineering projects</p>
+              </article>
+              <article class="portfolio-hero__proof-item">
+                <span class="portfolio-hero__proof-label">Core Stack</span>
+                <p class="portfolio-hero__proof-value">Python, JavaScript, HTML, CSS, Flask, PostgreSQL, React</p>
+              </article>
+              <article class="portfolio-hero__proof-item">
+                <span class="portfolio-hero__proof-label">Project Focus</span>
+                <p class="portfolio-hero__proof-value">Full-stack SaaS products, dashboards, client management systems, admin workflows, and intuitive UX</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="selected-work" class="portfolio-page">
+          <div class="panel-inner">
+            <p class="section-title">Selected Work</p>
+            <p class="section-copy">
+              Software projects with live demos, technical decisions, and user-focused implementation details.
+            </p>
+            <div id="portfolio-app" aria-live="polite"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer" role="contentinfo" data-shared-footer="true" data-root-prefix=""></footer>
+    </div>
+  </div>
+  <script src="shared-layout.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script>
+    const appRoot = document.getElementById('portfolio-app');
+
+    if (appRoot && window.React && window.ReactDOM) {
+      const h = React.createElement;
+
+      function TagRow(tags) {
+        return h(
+          'div',
+          { className: 'portfolio-tags' },
+          tags.map((tag) => h('span', { className: 'portfolio-tag', key: tag }, tag))
+        );
+      }
+
+      function LinkRow(links) {
+        if (!Array.isArray(links) || links.length === 0) return null;
+        return h(
+          'div',
+          { className: 'portfolio-links' },
+          links.map((link, index) =>
+            h(
+              'a',
+              {
+                key: link.href,
+                className: `portfolio-link${index === 0 ? ' portfolio-link--primary' : ''}`,
+                href: link.href,
+                target: link.external ? '_blank' : null,
+                rel: link.external ? 'noreferrer noopener' : null
+              },
+              link.label
+            )
+          )
+        );
+      }
+
+      function ProjectImage(src, alt) {
+        if (!src) return null;
+        return h(
+          'figure',
+          { className: 'portfolio-media' },
+          h('img', { src, alt, loading: 'lazy' })
+        );
+      }
+
+      function BulletList(items) {
+        if (!Array.isArray(items) || items.length === 0) return null;
+        return h(
+          'ul',
+          { className: 'portfolio-list' },
+          items.map((item) => h('li', { key: item }, item))
+        );
+      }
+
+      function ProjectCard(props) {
+        const className = `portfolio-card${props.featured ? ' portfolio-card--fitbase' : ''}`;
+        return h(
+          'article',
+          { className },
+          ProjectImage(props.image, props.alt),
+          h(
+            'div',
+            { className: 'portfolio-card-body' },
+            h('h3', null, props.title),
+            h('p', { className: 'portfolio-description' }, props.description),
+            BulletList(props.bullets),
+            h('p', { className: 'portfolio-stack-label' }, 'Tech Stack'),
+            TagRow(props.stack),
+            LinkRow(props.links)
+          )
+        );
+      }
+
+      const projects = [
+        {
+          title: 'FitbaseAI Platform',
+          image: 'images/portfolio/fitbaseai.com_trainer_dashboard.png',
+          alt: 'FitbaseAI trainer dashboard screenshot',
+          description: 'Full-stack fitness SaaS platform built with Python, Flask, and PostgreSQL to help trainers generate personalized workouts, manage clients, track progress, and run subscription-backed coaching workflows.',
+          bullets: [
+            'Built role-based experiences for clients, trainers, and admins, including secure auth, invites, email verification, persistent sessions, and gym-specific exercises.',
+            'Implemented workout generation, injury-aware training logic, scheduling and agenda tools, progress history, Stripe billing, and transactional email delivery.'
+          ],
+          stack: ['Python', 'Flask', 'PostgreSQL', 'JavaScript', 'Stripe', 'Postmark'],
+          links: [{ label: 'Visit Platform', href: 'https://fitbaseai.com/', external: true }],
+          featured: true
+        },
+        {
+          title: 'RyanDoro.com',
+          image: 'images/portfolio/ryandoro.com_index.html.png',
+          alt: 'RyanDoro.com website project cover',
+          description: 'Personal brand platform unifying coaching services, long-form content publishing, and software project showcases.',
+          bullets: [
+            'Shared layout architecture with reusable navigation and footer systems',
+            'React-powered portfolio rendering integrated into a static multi-page site'
+          ],
+          stack: ['HTML5', 'CSS3', 'JavaScript', 'React'],
+          links: [
+            { label: 'Visit Site', href: 'https://ryandoro.com/', external: true }
+          ]
+        },
+        {
+          title: 'Lucky Shrub Website',
+          image: 'images/portfolio/lucky-shrub-index.png',
+          alt: 'Lucky Shrub marketing site screenshot',
+          description: 'Responsive multi-page website built with semantic HTML and custom CSS for a fictional landscaping brand.',
+          bullets: [
+            'Structured information architecture across Home, About, Products, and Contact',
+            'Custom visual styling with promotional hero sections and conversion-focused layout patterns'
+          ],
+          stack: ['HTML5', 'CSS3', 'Responsive Design'],
+          links: [{ label: 'View Demo', href: 'https://ryandoro.github.io/lucky-shrub/', external: true }]
+        },
+        {
+          title: 'React Calculator',
+          image: 'images/portfolio/react-calculator.png',
+          alt: 'React calculator app project cover',
+          description: 'Single-page React calculator application built with hook-based state management and clear arithmetic interaction flow.',
+          bullets: [
+            'Implements add, subtract, multiply, divide, and reset actions',
+            'Uses useState and useRef for fast, controlled user interactions'
+          ],
+          stack: ['React', 'Hooks', 'Event Handling'],
+          links: [{ label: 'View Demo', href: 'https://ryandoro.github.io/react-calculator/', external: true }]
+        },
+        {
+          title: 'Chakra React Portfolio',
+          image: 'images/portfolio/chakra-react-portfolio.png',
+          alt: 'Chakra React portfolio project screenshot',
+          description: 'Single-page React portfolio using Chakra UI with reusable components, section-based layout, and validated contact workflows.',
+          bullets: [
+            'Form submission and validation powered by Formik + Yup',
+            'Scroll-aware header animation with section-based navigation'
+          ],
+          stack: ['React', 'Chakra UI', 'Formik', 'Yup'],
+          links: [{ label: 'View Demo', href: 'https://ryandoro.github.io/chakra-react-portfolio/', external: true }]
+        }
+      ];
+
+      function PortfolioApp() {
+        return h(
+          'div',
+          { className: 'portfolio-grid' },
+          projects.map((project) => h(ProjectCard, { key: project.title, ...project }))
+        );
+      }
+
+      ReactDOM.createRoot(appRoot).render(h(PortfolioApp));
+    }
+  </script>
+</body>
+</html>
