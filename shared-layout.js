@@ -96,6 +96,21 @@
     '</nav>'
   ].join('');
 
+  const portfolioProjectLinks = [
+    { label: 'FitBaseAI', href: 'https://fitbaseai.com/' },
+    { label: 'RyanDoro.com', href: 'https://ryandoro.com/' },
+    { label: 'Lucky Shrub', href: 'https://ryandoro.github.io/lucky-shrub/' },
+    { label: 'React Calculator', href: 'https://ryandoro.github.io/react-calculator/' },
+    { label: 'Chakra Portfolio', href: 'https://ryandoro.github.io/chakra-react-portfolio/' }
+  ];
+
+  const portfolioSubmenuMarkup = portfolioProjectLinks
+    .map(
+      (project) =>
+        `        <li class="menu-item"><a href="${project.href}" target="_blank" rel="noreferrer noopener">${project.label}</a></li>`
+    )
+    .join('');
+
   sharedNavNodes.forEach((secondary) => {
     const prefix = secondary.getAttribute('data-root-prefix') || '';
 
@@ -130,7 +145,19 @@
       `        <li class="menu-item"><a href="${prefix}testimonials.html">TESTIMONIALS</a></li>`,
       '      </ul>',
       '    </li>',
-      `    <li class="menu-item"><a href="${prefix}portfolio.html">PORTFOLIO</a></li>`,
+      '    <li class="menu-item menu-item-has-children is-collapsed">',
+      '      <div class="menu-parent">',
+      `        <a class="menu-parent-link" href="${prefix}portfolio.html">PORTFOLIO</a>`,
+      '        <button class="menu-chevron" type="button" aria-expanded="false" aria-label="Toggle Portfolio submenu">',
+      '          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">',
+      '            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>',
+      '          </svg>',
+      '        </button>',
+      '      </div>',
+      '      <ul class="sub-menu">',
+      portfolioSubmenuMarkup,
+      '      </ul>',
+      '    </li>',
       `    <li class="menu-item"><a href="${prefix}blog.html">BLOG</a></li>`,
       '  </ul>',
       '</nav>'
