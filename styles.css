@@ -2254,9 +2254,9 @@ button.button {
 
 .portfolio-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(44px, 6vw, 72px);
+  font-size: clamp(40px, 5.4vw, 64px);
   letter-spacing: 0.04em;
-  line-height: 1.02;
+  line-height: 1.04;
   margin: 0;
   max-width: 11ch;
   text-transform: uppercase;
@@ -2940,7 +2940,7 @@ button.button {
   }
 
   .portfolio-hero h1 {
-    font-size: 42px;
+    font-size: 38px;
     max-width: 12ch;
   }
 
@@ -3052,7 +3052,7 @@ button.button {
   }
 
   .portfolio-hero h1 {
-    font-size: 30px;
+    font-size: 28px;
     max-width: 13ch;
   }
 
@@ -3062,16 +3062,32 @@ button.button {
   }
 
   .portfolio-hero__content {
-    gap: 22px;
+    gap: 18px;
     grid-template-areas:
-      "intro"
+      "kicker"
+      "title"
       "portrait"
+      "lead"
+      "actions"
       "proof";
     grid-template-columns: 1fr;
   }
 
+  .portfolio-hero__intro {
+    display: contents;
+  }
+
+  .portfolio-hero .hero-kicker {
+    grid-area: kicker;
+  }
+
+  .portfolio-hero h1 {
+    grid-area: title;
+  }
+
   .portfolio-hero__portrait {
     border-radius: 26px;
+    grid-area: portrait;
     justify-self: center;
     width: min(62vw, 260px);
   }
@@ -3082,11 +3098,13 @@ button.button {
 
   .portfolio-hero__lead {
     font-size: 15px;
+    grid-area: lead;
     line-height: 1.7;
   }
 
   .portfolio-hero__actions {
     flex-direction: column;
+    grid-area: actions;
   }
 
   .portfolio-hero__actions .button {
